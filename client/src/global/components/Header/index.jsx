@@ -50,7 +50,7 @@ const Header = () => {
                   </HStack>
                </GridItem>
 
-               <GridItem colSpan={10}>
+               <GridItem colSpan={11}>
                   <Search />
                </GridItem>
 

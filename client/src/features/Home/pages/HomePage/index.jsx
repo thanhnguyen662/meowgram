@@ -1,7 +1,12 @@
 import React from 'react';
+import StoriesSlide from '../../../Stories/components/StoriesSlide';
 
 const HomePage = () => {
-   return <h1>This is Home Page</h1>;
+   return (
+      <>
+         <StoriesSlide />
+      </>
+   );
 };
 
 export default HomePage;

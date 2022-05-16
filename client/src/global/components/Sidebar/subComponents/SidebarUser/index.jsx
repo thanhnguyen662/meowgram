@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { authData } from '../../../../../features/Auth/authSlice';
 import { logout } from '../../../../../firebase';
-import AvatarOutline from '../../../AvatarOutline';
+import MeowAvatar from '../../../MeowAvatar';
 
 const SidebarUser = () => {
    const navigate = useNavigate();
@@ -40,7 +40,10 @@ const SidebarUser = () => {
          h='full'
       >
          <Flex position='relative'>
-            <AvatarOutline />
+            <MeowAvatar
+               outline={true}
+               src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cG9ydHJhaXR8ZW58MHx8MHx8&w=1000&q=80'
+            />
          </Flex>
          <Flex flex='2' flexDirection='column'>
             <Text fontSize='17px' color='mainFont' fontWeight='bold'>
