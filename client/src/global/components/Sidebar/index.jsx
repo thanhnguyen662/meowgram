@@ -1,7 +1,7 @@
 import { VStack } from '@chakra-ui/react';
 import React from 'react';
-import SidebarMenu from '../../components/SidebarMenu';
-import SidebarUser from '../../components/SidebarUser';
+import SidebarUser from './subComponents/SidebarUser';
+import SidebarMenu from './subComponents/SidebarMenu';
 
 const Sidebar = () => {
    return (

@@ -1,7 +1,5 @@
 import { ChevronDownIcon, Icon } from '@chakra-ui/icons';
 import {
-   Avatar,
-   Box,
    Flex,
    Menu,
    MenuButton,
@@ -13,9 +11,9 @@ import React from 'react';
 import { BsFillReplyFill, BsPersonFill } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../../../firebase';
-import AvatarOutline from '../../../../global/components/AvatarOutline';
-import { authData } from '../../../Auth/authSlice';
+import { authData } from '../../../../../features/Auth/authSlice';
+import { logout } from '../../../../../firebase';
+import AvatarOutline from '../../../AvatarOutline';
 
 const SidebarUser = () => {
    const navigate = useNavigate();

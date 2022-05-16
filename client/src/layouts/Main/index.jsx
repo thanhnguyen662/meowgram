@@ -1,8 +1,8 @@
 import { Box, Grid, GridItem } from '@chakra-ui/react';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../../features/Home/pages/Sidebar';
 import Header from '../../global/components/Header';
+import Sidebar from '../../global/components/Sidebar';
 import ContentContainer from '../ContentContainer';
 
 const Main = () => {
@@ -18,7 +18,6 @@ const Main = () => {
                <GridItem colSpan={11}>
                   <Outlet />
                </GridItem>
-               <GridItem colSpan={5}></GridItem>
             </Grid>
          </ContentContainer>
       </Box>

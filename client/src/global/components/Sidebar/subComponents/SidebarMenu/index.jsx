@@ -13,7 +13,7 @@ import {
 } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { authData } from '../../../Auth/authSlice';
+import { authData } from '../../../../../features/Auth/authSlice';
 
 const SidebarMenu = () => {
    const navigate = useNavigate();
