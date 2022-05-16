@@ -1,9 +1,10 @@
 import React from 'react';
+import StoriesSlide from '../../../Stories/components/StoriesSlide';
 
 const HomePage = () => {
    return (
       <>
-         <h1>This is home page</h1>
+         <StoriesSlide />
       </>
    );
 };

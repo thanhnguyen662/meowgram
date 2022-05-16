@@ -1,37 +1,20 @@
 import {
-   Avatar,
+   Box,
    Button,
    Center,
    Container,
-   Flex,
    Grid,
    GridItem,
    HStack,
-   Icon,
-   Menu,
-   MenuButton,
-   MenuItem,
-   MenuList,
    Text,
 } from '@chakra-ui/react';
 import React from 'react';
-import { BsFillReplyFill, BsPersonFill } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { authData } from '../../../features/Auth/authSlice';
-import logout from '../../../firebase/logout';
 import useUserLogged from '../../../hooks/useUserLogged';
 import Search from '../Search';
-
-const subMenuStyle = {
-   fontWeight: 'bold',
-   color: 'gray.600',
-   transition: '0.2s ease-out',
-   cursor: 'pointer',
-   _hover: {
-      color: 'black',
-   },
-};
+import { TextLogo } from '../Logo';
 
 const Header = () => {
    const { userData } = useSelector(authData);
@@ -43,15 +26,10 @@ const Header = () => {
    };
 
    return (
-      <Center
-         background='white'
-         borderWidth='7px 0 2px 0'
-         borderTopColor='blue.700'
-         h='20'
-      >
-         <Container maxW='1400px'>
-            <Grid templateColumns='repeat(2, 1fr)' gap={6}>
-               <GridItem w='100%' h='10'>
+      <Center background='white' h='20'>
+         <Container maxW='1300px'>
+            <Grid templateColumns='repeat(20, 1fr)' gap={6}>
+               <GridItem w='100%' h='10' colSpan={4}>
                   <HStack
                      w='full'
                      h='full'
@@ -66,18 +44,17 @@ const Header = () => {
                         justifyContent='left'
                         cursor='pointer'
                         transition='0.2s ease-out'
-                        _hover={{
-                           transform: 'scale(1.1)',
-                        }}
                      >
-                        Logo
+                        <TextLogo />
                      </Text>
-                     <Text {...subMenuStyle}>Features</Text>
-                     <Text {...subMenuStyle}>Blog</Text>
-                     <Text {...subMenuStyle}>Pricing</Text>
                   </HStack>
                </GridItem>
-               <GridItem w='100%' h='10'>
+
+               <GridItem colSpan={11}>
+                  <Search />
+               </GridItem>
+
+               <GridItem w='100%' h='10' colStart={18} colEnd={20}>
                   {userLogged ? (
                      <UserLogin navigate={navigate} userData={userData} />
                   ) : (
@@ -91,43 +68,10 @@ const Header = () => {
 };
 
 const UserLogin = (props) => {
-   const { navigate, userData } = props;
-
-   const onClickProfile = () => {
-      navigate(`/profile/${userData.email}`);
-   };
-
-   const onClickLogout = async () => {
-      const logoutResponse = await logout();
-      if (logoutResponse.message === 'logout_success') {
-         localStorage.setItem('providerData', false);
-         return (window.location = '/home');
-      }
-   };
-
    return (
-      <Flex justifyContent='end' gap='20px'>
-         <Search />
-         <Menu isLazy>
-            <MenuButton>
-               <Avatar w='40px' h='40px' />
-            </MenuButton>
-            <MenuList>
-               <MenuItem
-                  icon={<Icon as={BsPersonFill} />}
-                  onClick={onClickProfile}
-               >
-                  Profile
-               </MenuItem>
-               <MenuItem
-                  icon={<Icon as={BsFillReplyFill} />}
-                  onClick={onClickLogout}
-               >
-                  Logout
-               </MenuItem>
-            </MenuList>
-         </Menu>
-      </Flex>
+      <Box textAlign='end'>
+         <Button>New Post</Button>
+      </Box>
    );
 };
 
@@ -140,7 +84,6 @@ const UserNotLogin = (props) => {
 
    return (
       <HStack justifyContent='end' spacing='10px'>
-         <Search />
          <Button onClick={() => onClickButton('register')}>Register</Button>
          <Button onClick={() => onClickButton('login')} colorScheme='blue'>
             Login
