@@ -34,7 +34,7 @@ function Search(props) {
             <Input
                variant='filled'
                type='text'
-               placeholder='Search here...'
+               placeholder='Search'
                onKeyDown={onClickSearch}
                onChange={onSearchChange}
             />

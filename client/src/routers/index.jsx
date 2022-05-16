@@ -17,6 +17,14 @@ const Routers = () => {
             <Route element={<Private />}>
                <Route path='/home/*' element={<Home />} />
                <Route path='/profile/*' element={<Profile />} />
+               <Route
+                  path='/explorer'
+                  element={
+                     <>
+                        <h1>123123</h1>
+                     </>
+                  }
+               />
             </Route>
             <Route path='*' element={<NotFoundPage />} />
          </Routes>

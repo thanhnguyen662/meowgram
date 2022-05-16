@@ -1,9 +1,8 @@
+import { ChevronDownIcon, Icon } from '@chakra-ui/icons';
 import {
    Avatar,
    Box,
    Flex,
-   Heading,
-   Icon,
    Menu,
    MenuButton,
    MenuItem,
@@ -11,14 +10,14 @@ import {
    Text,
 } from '@chakra-ui/react';
 import React from 'react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
 import { BsFillReplyFill, BsPersonFill } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../../../firebase';
+import AvatarOutline from '../../../../global/components/AvatarOutline';
 import { authData } from '../../../Auth/authSlice';
-import { useSelector } from 'react-redux';
 
-const Sidebar = () => {
+const SidebarUser = () => {
    const navigate = useNavigate();
    const { userData } = useSelector(authData);
 
@@ -42,25 +41,25 @@ const Sidebar = () => {
          w='full'
          h='full'
       >
-         <Flex>
-            <Avatar
-               w='45px'
-               h='45px'
-               src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cG9ydHJhaXR8ZW58MHx8MHx8&w=1000&q=80'
-            />
+         <Flex position='relative'>
+            <AvatarOutline />
          </Flex>
-         <Flex flex='1' flexDirection='column'>
-            <Text fontSize='15px' color='mainFont' fontWeight='bold'>
+         <Flex flex='2' flexDirection='column'>
+            <Text fontSize='17px' color='mainFont' fontWeight='bold'>
                {userData.name}
             </Text>
-            <Text fontSize='13px' color='subFont'>
+            <Text fontSize='15px' color='subFont' fontWeight={500}>
                {userData.email}
             </Text>
          </Flex>
          <Flex flex='1' justifyContent='center' alignItems='center'>
             <Menu isLazy>
                <MenuButton>
-                  <ChevronDownIcon cursor='pointer' fontSize='25px' />
+                  <ChevronDownIcon
+                     cursor='pointer'
+                     fontSize='25px'
+                     color='gray.500'
+                  />
                </MenuButton>
                <MenuList>
                   <MenuItem
@@ -82,4 +81,4 @@ const Sidebar = () => {
    );
 };
 
-export default Sidebar;
+export default SidebarUser;

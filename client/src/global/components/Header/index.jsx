@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { authData } from '../../../features/Auth/authSlice';
 import useUserLogged from '../../../hooks/useUserLogged';
 import Search from '../Search';
+import { TextLogo } from '../Logo';
 
 const Header = () => {
    const { userData } = useSelector(authData);
@@ -27,8 +28,8 @@ const Header = () => {
    return (
       <Center background='white' h='20'>
          <Container maxW='1300px'>
-            <Grid templateColumns='repeat(4, 1fr)' gap={6}>
-               <GridItem w='100%' h='10' colSpan={1}>
+            <Grid templateColumns='repeat(20, 1fr)' gap={6}>
+               <GridItem w='100%' h='10' colSpan={4}>
                   <HStack
                      w='full'
                      h='full'
@@ -43,20 +44,17 @@ const Header = () => {
                         justifyContent='left'
                         cursor='pointer'
                         transition='0.2s ease-out'
-                        _hover={{
-                           transform: 'scale(1.1)',
-                        }}
                      >
-                        Instagram
+                        <TextLogo />
                      </Text>
                   </HStack>
                </GridItem>
 
-               <GridItem colSpan={2}>
+               <GridItem colSpan={10}>
                   <Search />
                </GridItem>
 
-               <GridItem w='100%' h='10' colSpan={1}>
+               <GridItem w='100%' h='10' colStart={18} colEnd={20}>
                   {userLogged ? (
                      <UserLogin navigate={navigate} userData={userData} />
                   ) : (
