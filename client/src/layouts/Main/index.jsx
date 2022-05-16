@@ -6,7 +6,7 @@ import ContentContainer from '../ContentContainer';
 
 const Main = () => {
    return (
-      <Box background='#FAFAFA'>
+      <Box>
          <Header />
          <ContentContainer>
             <Outlet />

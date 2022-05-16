@@ -13,10 +13,9 @@ const Routers = () => {
       <Loader>
          <Routes>
             <Route path='/auth/*' element={<Auth />} />
-            <Route element={<Main />}>
-               <Route path='/home/*' element={<Home />} />
-            </Route>
+            <Route element={<Main />}></Route>
             <Route element={<Private />}>
+               <Route path='/home/*' element={<Home />} />
                <Route path='/profile/*' element={<Profile />} />
             </Route>
             <Route path='*' element={<NotFoundPage />} />
