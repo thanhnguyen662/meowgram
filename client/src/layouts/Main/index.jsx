@@ -8,14 +8,23 @@ import ContentContainer from '../ContentContainer';
 const Main = () => {
    return (
       <Box>
-         <Header />
+         <Box position='sticky' top='0px' zIndex={4}>
+            <Header />
+         </Box>
          <ContentContainer>
-            <Grid templateColumns='repeat(20, 1fr)' gap={6}>
+            <Grid templateColumns='repeat(20, 1fr)' gap={{ base: 0, md: 6 }}>
                <GridItem w='100%' colSpan={4}>
-                  <Sidebar />
+                  <Box
+                     position='sticky'
+                     top='96px'
+                     zIndex={4}
+                     display={{ base: 'none', md: 'block' }}
+                  >
+                     <Sidebar />
+                  </Box>
                </GridItem>
 
-               <GridItem colSpan={11}>
+               <GridItem colSpan={{ base: 20, md: 16 }} mb='20px'>
                   <Outlet />
                </GridItem>
             </Grid>
