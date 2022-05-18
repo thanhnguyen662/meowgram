@@ -19,9 +19,7 @@ const HomePage = () => {
                <VStack w='full' alignItems='flex-start' spacing='30px'>
                   <StoriesSlide />
                   <Heading fontSize='26px'>Feed</Heading>
-                  <VStack spacing='40px'>
-                     <PostCard />
-                     <Divider />
+                  <VStack spacing='40px' w='full'>
                      <PostCard />
                      <Divider />
                      <PostCard />

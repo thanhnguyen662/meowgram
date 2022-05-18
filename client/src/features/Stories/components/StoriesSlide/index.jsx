@@ -1,13 +1,8 @@
-import { Box, HStack, Text, VStack } from '@chakra-ui/react';
+import { Box, Text, VStack } from '@chakra-ui/react';
 import React from 'react';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import MeowAvatar from '../../../../global/components/MeowAvatar';
-// import PropTypes from 'prop-types';
-
-// StoriesSlide.propTypes = {
-
-// };
 
 function StoriesSlide(props) {
    const storiesArray = [
