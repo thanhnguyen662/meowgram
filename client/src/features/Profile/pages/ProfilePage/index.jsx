@@ -1,14 +1,17 @@
-import { Box } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
 import React from 'react';
+import { Outlet } from 'react-router-dom';
+import ProfileHeader from '../../components/ProfileHeader';
+import ProfileTabBar from '../../components/ProfileTabBar';
 
-const ProfilePage = () => {
+const ProfileMainLayout = () => {
    return (
-      <>
-         <Box>
-            <h1>This is Profile Page</h1>
-         </Box>
-      </>
+      <VStack w='full' alignItems='start'>
+         <ProfileHeader />
+         <ProfileTabBar />
+         <Outlet />
+      </VStack>
    );
 };
 
-export default ProfilePage;
+export default ProfileMainLayout;
