@@ -6,7 +6,7 @@ import ProfileTabBar from '../../components/ProfileTabBar';
 
 const ProfileMainLayout = () => {
    return (
-      <VStack w='full' alignItems='start'>
+      <VStack w='full' alignItems='start' spacing='20px'>
          <ProfileHeader />
          <ProfileTabBar />
          <Outlet />

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import { authData } from '../../features/Auth/authSlice';
-import HomeSpinner from '../../global/components/HomeSpinner';
+import { authData } from '../../../features/Auth/authSlice';
+import HomeSpinner from '../../../global/components/HomeSpinner';
 
 const Loader = (props) => {
    const { children } = props;

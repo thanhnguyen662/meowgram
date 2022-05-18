@@ -6,7 +6,7 @@ import Profile from '../features/Profile';
 import Main from '../global/layouts/Main';
 import Private from '../global/layouts/Private';
 import NotFoundPage from '../global/pages/NotFoundPage';
-import Loader from '../layouts/Loader';
+import Loader from '../global/layouts/Loader';
 
 const Routers = () => {
    return (
