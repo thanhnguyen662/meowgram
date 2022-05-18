@@ -2,11 +2,11 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Auth from '../features/Auth';
 import Home from '../features/Home';
-import Loader from '../layouts/Loader';
-import Main from '../layouts/Main';
 import Profile from '../features/Profile';
-import Private from '../layouts/Private';
+import Main from '../global/layouts/Main';
+import Private from '../global/layouts/Private';
 import NotFoundPage from '../global/pages/NotFoundPage';
+import Loader from '../layouts/Loader';
 
 const Routers = () => {
    return (

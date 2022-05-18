@@ -1,5 +1,5 @@
 import { Tab, TabList, Tabs } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const ProfileTabBar = () => {

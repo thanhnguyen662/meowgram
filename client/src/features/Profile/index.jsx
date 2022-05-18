@@ -1,9 +1,9 @@
 import React from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import ProfilePage from './pages/ProfilePage';
 import ProfilePostIGTVPage from './pages/ProfilePostIGTVPage';
 import ProfilePostPage from './pages/ProfilePostPage';
 import ProfileTaggedPage from './pages/ProfileTaggedPage';
-import ProfilePage from './pages/ProfilePage';
 
 const Profile = () => {
    return (
