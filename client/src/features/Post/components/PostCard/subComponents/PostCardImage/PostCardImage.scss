@@ -1,0 +1,25 @@
+.post-card--image {
+   .lock {
+      display: none;
+   }
+
+   .prev {
+      position: absolute;
+      top: 49%;
+      transform: translate-y(-50%);
+      font-size: 20px;
+      left: 15px;
+      z-index: 3;
+      color: rgba(255, 255, 255, 0.5);
+   }
+
+   .next {
+      position: absolute;
+      top: 49%;
+      transform: translate-y(-50%);
+      font-size: 20px;
+      right: 15px;
+      z-index: 3;
+      color: rgba(255, 255, 255, 0.5);
+   }
+}
