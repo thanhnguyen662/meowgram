@@ -98,29 +98,32 @@ function StoriesSlide(props) {
       },
    ];
 
+   const slideBreakPoints = {
+      0: {
+         slidesPerView: 4,
+         spaceBetween: 1,
+      },
+      390: {
+         slidesPerView: 4,
+         spaceBetween: 2,
+      },
+      640: {
+         slidesPerView: 5,
+         spaceBetween: 5,
+      },
+      768: {
+         slidesPerView: 5,
+         spaceBetween: 2,
+      },
+      1024: {
+         slidesPerView: 8,
+         spaceBetween: 5,
+      },
+   };
+
    return (
       <Box w='full'>
-         <Swiper
-            freeMode={true}
-            breakpoints={{
-               390: {
-                  slidesPerView: 4,
-                  spaceBetween: 5,
-               },
-               640: {
-                  slidesPerView: 5,
-                  spaceBetween: 5,
-               },
-               768: {
-                  slidesPerView: 5,
-                  spaceBetween: 5,
-               },
-               1024: {
-                  slidesPerView: 8,
-                  spaceBetween: 5,
-               },
-            }}
-         >
+         <Swiper freeMode={true} breakpoints={slideBreakPoints}>
             {storiesArray.map((stories) => (
                <SwiperSlide key={stories.name}>
                   <VStack>

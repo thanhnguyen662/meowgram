@@ -1,13 +1,4 @@
-import {
-   Avatar,
-   Box,
-   Heading,
-   HStack,
-   Spacer,
-   Tag,
-   Text,
-   VStack,
-} from '@chakra-ui/react';
+import { Heading, HStack, Spacer, Tag, Text, VStack } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import MeowAvatar from '../../../../global/components/MeowAvatar';
 

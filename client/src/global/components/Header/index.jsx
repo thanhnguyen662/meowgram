@@ -1,12 +1,9 @@
 import {
-   Button,
    Center,
    Container,
    Flex,
    Grid,
    GridItem,
-   HStack,
-   IconButton,
    Menu,
    MenuButton,
    MenuItem,
@@ -14,15 +11,17 @@ import {
    useBreakpointValue,
 } from '@chakra-ui/react';
 import React from 'react';
-import { BsList } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { TextLogo } from '../Logo';
 import MeowAvatar from '../MeowAvatar';
 import Search from '../Search';
+import { useSelector } from 'react-redux';
+import { authData } from '../../../features/Auth/authSlice';
 
 const Header = () => {
    const navigate = useNavigate();
    const breakpoint = useBreakpointValue({ base: 'mobile', md: 'desktop' });
+   const { userData } = useSelector(authData);
 
    const onClickLogo = () => {
       navigate('/home');
@@ -43,7 +42,11 @@ const Header = () => {
                </GridItem>
 
                <GridItem colSpan={{ base: 20, md: 11 }}>
-                  {breakpoint === 'desktop' ? <Search /> : <HeaderMobile />}
+                  {breakpoint === 'desktop' ? (
+                     <Search />
+                  ) : (
+                     <HeaderMobile navigate={navigate} userData={userData} />
+                  )}
                </GridItem>
             </Grid>
          </Container>
@@ -51,7 +54,9 @@ const Header = () => {
    );
 };
 
-const HeaderMobile = () => {
+const HeaderMobile = (props) => {
+   const { navigate, userData } = props;
+
    return (
       <Flex gap='10px'>
          <Search />
@@ -65,7 +70,12 @@ const HeaderMobile = () => {
                />
             </MenuButton>
             <MenuList>
-               <MenuItem>New Tab</MenuItem>
+               <MenuItem onClick={() => navigate(`/home`)}>Home</MenuItem>
+               <MenuItem
+                  onClick={() => navigate(`/profile/${userData.email}/posts`)}
+               >
+                  Profile
+               </MenuItem>
             </MenuList>
          </Menu>
       </Flex>

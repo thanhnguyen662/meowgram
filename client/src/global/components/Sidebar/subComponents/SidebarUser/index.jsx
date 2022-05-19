@@ -20,7 +20,7 @@ const SidebarUser = () => {
    const { userData } = useSelector(authData);
 
    const onClickProfile = () => {
-      navigate(`/profile/${userData.email}`);
+      navigate(`/profile/${userData.email}/posts`);
    };
 
    const onClickLogout = async () => {

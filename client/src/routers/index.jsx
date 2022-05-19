@@ -7,6 +7,7 @@ import Main from '../global/layouts/Main';
 import Private from '../global/layouts/Private';
 import NotFoundPage from '../global/pages/NotFoundPage';
 import Loader from '../global/layouts/Loader';
+import ExplorerPage from '../features/Explorer/pages/ExplorerPage';
 
 const Routers = () => {
    return (
@@ -17,14 +18,7 @@ const Routers = () => {
             <Route element={<Private />}>
                <Route path='/home/*' element={<Home />} />
                <Route path='/profile/*' element={<Profile />} />
-               <Route
-                  path='/explorer'
-                  element={
-                     <>
-                        <h1>123123</h1>
-                     </>
-                  }
-               />
+               <Route path='/explorer' element={<ExplorerPage />} />
             </Route>
             <Route path='*' element={<NotFoundPage />} />
          </Routes>
