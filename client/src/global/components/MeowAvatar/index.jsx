@@ -1,4 +1,4 @@
-import { Avatar, Flex } from '@chakra-ui/react';
+import { AspectRatio, Avatar, Flex } from '@chakra-ui/react';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -33,12 +33,13 @@ function MeowAvatar(props) {
             position: 'absolute',
             zIndex: '2',
             width: '100%',
-            height: '100%',
+            // height: '100%',
             background: outline
                ? 'linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)'
                : 'transparent',
             borderRadius: '100rem',
             transition: 'all 0.8s linear',
+            aspectRatio: '1',
          }}
          _hover={{
             _before: {
@@ -53,18 +54,15 @@ function MeowAvatar(props) {
             transform: 'translate(-50%, -50%)',
             zIndex: '2',
             background: '#fff',
-            width: 'calc(100% - 5px)',
-            height: 'calc(100% - 5px)',
+            width: 'calc(100% - 7%)',
+            // height: 'calc(100% - 5px)',
             borderRadius: '100rem',
+            aspectRatio: '1',
          }}
       >
-         <Avatar
-            position='absolute'
-            zIndex='3'
-            src={src}
-            w={`calc(${width} - 15%)`}
-            h={`calc(${height} - 15%)`}
-         />
+         <AspectRatio ratio={1} zIndex='3' w={`calc(${width} - 15%)`}>
+            <Avatar src={src} w={'100%'} h={'100%'} objectFit={'cover'} />
+         </AspectRatio>
       </Flex>
    );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import useUserLogged from '../../hooks/useUserLogged';
+import useUserLogged from '../../../hooks/useUserLogged';
 import Main from '../Main';
 
 function Private({ children }) {

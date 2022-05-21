@@ -44,7 +44,7 @@ const SidebarMenu = () => {
          icon: <Icon as={BsPerson} />,
          activeIcon: <Icon as={BsPersonFill} />,
          pathname: 'profile',
-         to: `/profile/${userData.email}`,
+         to: `/profile/${userData.email}/posts`,
       },
    ];
 
