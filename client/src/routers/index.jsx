@@ -7,7 +7,7 @@ import Post from '../features/Post';
 import Profile from '../features/Profile';
 import Loader from '../global/layouts/Loader';
 import Private from '../global/layouts/Private';
-import PostModalPage from '../features/Post/pages/PostModalPage';
+import PostDetailModal from '../features/Post/components/PostDetailModal';
 
 const Routers = () => {
    let location = useLocation();
@@ -27,7 +27,7 @@ const Routers = () => {
 
          {state?.backgroundLocation && (
             <Routes>
-               <Route path='/post/:id' element={<PostModalPage />} />
+               <Route path='/post/:id' element={<PostDetailModal />} />
             </Routes>
          )}
       </Loader>

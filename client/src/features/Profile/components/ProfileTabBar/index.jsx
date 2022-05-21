@@ -57,8 +57,9 @@ const ProfileTabBar = () => {
    }, [location.pathname]);
 
    const handleTabsChange = (index) => {
-      const foundTabByIndex = tabs.find((t) => t.index === index).pathName;
       setTabIndex(parseInt(index));
+      const foundTabByIndex = tabs.find((t) => t.index === index).pathName;
+      tabRef.current = foundTabByIndex;
       navigate(`/profile/${email}/${foundTabByIndex}`);
    };
 
