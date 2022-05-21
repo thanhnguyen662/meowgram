@@ -6,7 +6,7 @@ const NotFoundPage = () => {
    const navigate = useNavigate();
 
    const onClickGoToHome = () => {
-      navigate('/home');
+      navigate('/');
    };
 
    return (

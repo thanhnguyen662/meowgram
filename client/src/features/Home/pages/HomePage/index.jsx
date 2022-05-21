@@ -1,11 +1,4 @@
-import {
-   Box,
-   Divider,
-   Grid,
-   GridItem,
-   Heading,
-   VStack,
-} from '@chakra-ui/react';
+import { Box, Grid, GridItem, Heading, VStack } from '@chakra-ui/react';
 import React from 'react';
 import PostCard from '../../../Post/components/PostCard';
 import StoriesSlide from '../../../Stories/components/StoriesSlide';
@@ -20,8 +13,6 @@ const HomePage = () => {
                   <StoriesSlide />
                   <Heading fontSize='26px'>Feed</Heading>
                   <VStack spacing='40px' w='full'>
-                     <PostCard />
-                     <Divider />
                      <PostCard />
                   </VStack>
                </VStack>

@@ -14,7 +14,7 @@ const LoginPage = () => {
          const loginResponse = await loginWithEmail(formData);
          if (loginResponse.message === 'login_firebase_successful') {
             setFormLoading.off();
-            window.location = '/home';
+            window.location = '/';
          }
       } catch (error) {
          toast({
