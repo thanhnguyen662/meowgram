@@ -8,7 +8,7 @@ import {
    Tabs,
    Text,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
    BsGridFill,
@@ -45,20 +45,26 @@ const ProfileTabBar = () => {
    ];
 
    const navigate = useNavigate();
-   const location = useLocation();
+   let location = useLocation();
    const { email } = useParams();
 
+   const tabRef = useRef('posts');
    const [tabIndex, setTabIndex] = useState();
+
+   useEffect(() => {
+      if (location.pathname.split('/')[1] !== 'profile') return;
+      tabRef.current = location.pathname.split('/')[3];
+   }, [location.pathname]);
 
    const handleTabsChange = (index) => {
       const foundTabByIndex = tabs.find((t) => t.index === index).pathName;
-      navigate(`/profile/${email}/${foundTabByIndex}`);
       setTabIndex(parseInt(index));
+      navigate(`/profile/${email}/${foundTabByIndex}`);
    };
 
    const foundIndexByTabName = tabs.find(
-      (t) => t.pathName === location.pathname.split('/')[3]
-   ).index;
+      (t) => t.pathName === (location.pathname.split('/')[3] || tabRef.current)
+   )?.index;
 
    const isTagActive = (tab) => {
       return parseInt(foundIndexByTabName) === tab.index;

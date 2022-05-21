@@ -1,5 +1,6 @@
 import { Grid, GridItem } from '@chakra-ui/react';
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ProfileImage from '../../components/ProfileImage';
 
 const ProfilePostPage = () => {
@@ -70,6 +71,9 @@ const ProfilePostPage = () => {
       },
    ];
 
+   let location = useLocation();
+   const navigate = useNavigate();
+
    return (
       <Grid
          templateColumns='repeat(24, 1fr)'
@@ -78,7 +82,15 @@ const ProfilePostPage = () => {
          autoRows={true}
       >
          {postImageArray.map((post) => (
-            <GridItem colSpan={{ base: 8, md: 6 }} key={post.id}>
+            <GridItem
+               colSpan={{ base: 8, md: 6 }}
+               key={post.id}
+               onClick={() =>
+                  navigate('/post/27', {
+                     state: { backgroundLocation: location },
+                  })
+               }
+            >
                <ProfileImage post={post} />
             </GridItem>
          ))}

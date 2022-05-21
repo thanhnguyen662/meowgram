@@ -11,7 +11,11 @@ function Private({ children }) {
       return <Navigate to='/auth/login' state={{ from: location }} replace />;
    }
 
-   return <Main />;
+   return (
+      <>
+         <Main />
+      </>
+   );
 }
 
 export default Private;
