@@ -12,61 +12,80 @@ import {
    MenuItem,
    MenuList,
    useBreakpointValue,
+   useDisclosure,
 } from '@chakra-ui/react';
 import React from 'react';
+import { BsPlus } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { authData } from '../../../features/Auth/authSlice';
+import PostCreateModal from '../../../features/Post/components/PostCreateModal';
 import { TextLogo } from '../Logo';
 import MeowAvatar from '../MeowAvatar';
 import Search from '../Search';
-import { useSelector } from 'react-redux';
-import { authData } from '../../../features/Auth/authSlice';
-import { BsPlus } from 'react-icons/bs';
 
 const Header = () => {
    const navigate = useNavigate();
-   const breakpoint = useBreakpointValue({ base: 'mobile', md: 'desktop' });
    const { userData } = useSelector(authData);
+   const breakpoint = useBreakpointValue({ base: 'mobile', md: 'desktop' });
+
+   const {
+      isOpen: isOpenCreatePostModal,
+      onOpen: onOpenCreatePostModal,
+      onClose: onCloseCreatePostModal,
+   } = useDisclosure();
 
    const onClickLogo = () => {
       navigate('/');
    };
 
+   const onClickCreatePost = () => {
+      onOpenCreatePostModal();
+   };
+
    return (
-      <Center background='white' h='20'>
-         <Container maxW='1300px'>
-            <Grid templateColumns='repeat(20, 1fr)' gap={{ base: 0, md: 6 }}>
-               <GridItem
-                  w='100%'
-                  h='10'
-                  colSpan={{ base: 0, md: 4 }}
-                  display={{ base: 'none', md: 'block' }}
-                  onClick={onClickLogo}
-               >
-                  <TextLogo />
-               </GridItem>
+      <>
+         <Center background='white' h='20'>
+            <Container maxW='1300px'>
+               <Grid templateColumns='repeat(20, 1fr)' gap={{ base: 0, md: 6 }}>
+                  <GridItem
+                     w='100%'
+                     h='10'
+                     colSpan={{ base: 0, md: 4 }}
+                     display={{ base: 'none', md: 'block' }}
+                     onClick={onClickLogo}
+                  >
+                     <TextLogo />
+                  </GridItem>
 
-               <GridItem colSpan={{ base: 20, md: 11 }}>
-                  {breakpoint === 'desktop' ? (
-                     <Search />
-                  ) : (
-                     <HeaderMobile navigate={navigate} userData={userData} />
-                  )}
-               </GridItem>
+                  <GridItem colSpan={{ base: 20, md: 11 }}>
+                     {breakpoint === 'desktop' ? (
+                        <Search />
+                     ) : (
+                        <HeaderMobile navigate={navigate} userData={userData} />
+                     )}
+                  </GridItem>
 
-               <GridItem colSpan={5} display={{ base: 'none', md: 'block' }}>
-                  <Box w='full' display='flex' justifyContent='end'>
-                     <Button
-                        leftIcon={<Icon as={BsPlus} />}
-                        variant='outline'
-                        colorScheme='blue'
-                     >
-                        Post it
-                     </Button>
-                  </Box>
-               </GridItem>
-            </Grid>
-         </Container>
-      </Center>
+                  <GridItem colSpan={5} display={{ base: 'none', md: 'block' }}>
+                     <Box w='full' display='flex' justifyContent='end'>
+                        <Button
+                           leftIcon={<Icon as={BsPlus} />}
+                           variant='outline'
+                           colorScheme='blue'
+                           onClick={onClickCreatePost}
+                        >
+                           Post it
+                        </Button>
+                     </Box>
+                  </GridItem>
+               </Grid>
+            </Container>
+         </Center>
+         <PostCreateModal
+            isOpen={isOpenCreatePostModal}
+            onClose={onCloseCreatePostModal}
+         />
+      </>
    );
 };
 

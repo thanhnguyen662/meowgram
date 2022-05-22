@@ -18,6 +18,7 @@ const Routers = () => {
    return (
       <Loader>
          <Routes location={state?.backgroundLocation || location}>
+            {/*This is Public routes */}
             <Route path='auth/*' element={<Auth />} />
             {/*This is Private routes. Requires Login to view */}
             <Route element={<Private />}>

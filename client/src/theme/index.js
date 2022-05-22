@@ -1,4 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
+import { StepsStyleConfig as Steps } from 'chakra-ui-steps';
 import '@fontsource/manrope';
 import '@fontsource/nunito/300.css';
 import '@fontsource/nunito/500.css';
@@ -18,6 +19,10 @@ const colors = {
    subFont: '#6C6C6C',
 };
 
+const components = {
+   Steps,
+};
+
 const fonts = {
    heading: 'manrope, sans-serif',
    body: 'nunito, sans-serif',
@@ -27,6 +32,7 @@ const theme = extendTheme({
    colors,
    fonts,
    breakpoints,
+   components,
 });
 
 export default theme;
