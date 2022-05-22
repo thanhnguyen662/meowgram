@@ -8,6 +8,8 @@ import Profile from '../features/Profile';
 import Loader from '../global/layouts/Loader';
 import Private from '../global/layouts/Private';
 import PostDetailModal from '../features/Post/components/PostDetailModal';
+import Main from '../global/layouts/Main';
+import WithSidebar from '../global/layouts/WithSidebar';
 
 const Routers = () => {
    let location = useLocation();
@@ -17,11 +19,22 @@ const Routers = () => {
       <Loader>
          <Routes location={state?.backgroundLocation || location}>
             <Route path='auth/*' element={<Auth />} />
-            <Route path='/' element={<Private />}>
-               <Route index element={<HomePage />} />
-               <Route path='post/*' element={<Post />} />
-               <Route path='profile/*' element={<Profile state={state} />} />
-               <Route path='explorer' element={<ExplorerPage />} />
+            {/*This is Private routes. Requires Login to view */}
+            <Route element={<Private />}>
+               {/*This is Main layout. With header and footer */}
+               <Route element={<Main />}>
+                  {/*This is Sidebar layout. Add Sidebar */}
+                  <Route element={<WithSidebar />}>
+                     <Route path='/' element={<HomePage />} />
+                     <Route
+                        path='profile/*'
+                        element={<Profile state={state} />}
+                     />
+                     <Route path='explorer' element={<ExplorerPage />} />
+                  </Route>
+
+                  <Route path='post/*' element={<Post />} />
+               </Route>
             </Route>
          </Routes>
 

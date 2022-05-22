@@ -53,7 +53,7 @@ const Header = () => {
                   )}
                </GridItem>
 
-               <GridItem colSpan={5}>
+               <GridItem colSpan={5} display={{ base: 'none', md: 'block' }}>
                   <Box w='full' display='flex' justifyContent='end'>
                      <Button
                         leftIcon={<Icon as={BsPlus} />}

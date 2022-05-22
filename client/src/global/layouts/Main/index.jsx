@@ -12,7 +12,7 @@ const Main = () => {
             <Header />
          </Box>
          <ContentContainer>
-            <Grid templateColumns='repeat(20, 1fr)' gap={{ base: 0, md: 6 }}>
+            {/* <Grid templateColumns='repeat(20, 1fr)' gap={{ base: 0, md: 6 }}>
                <GridItem w='100%' colSpan={4}>
                   <Box
                      position='sticky'
@@ -27,7 +27,8 @@ const Main = () => {
                <GridItem colSpan={{ base: 20, md: 16 }} mb='20px'>
                   <Outlet />
                </GridItem>
-            </Grid>
+            </Grid> */}
+            <Outlet />
          </ContentContainer>
       </Box>
    );
