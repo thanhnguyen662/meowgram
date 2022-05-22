@@ -1,9 +1,12 @@
 import {
+   Box,
+   Button,
    Center,
    Container,
    Flex,
    Grid,
    GridItem,
+   Icon,
    Menu,
    MenuButton,
    MenuItem,
@@ -17,6 +20,7 @@ import MeowAvatar from '../MeowAvatar';
 import Search from '../Search';
 import { useSelector } from 'react-redux';
 import { authData } from '../../../features/Auth/authSlice';
+import { BsPlus } from 'react-icons/bs';
 
 const Header = () => {
    const navigate = useNavigate();
@@ -47,6 +51,18 @@ const Header = () => {
                   ) : (
                      <HeaderMobile navigate={navigate} userData={userData} />
                   )}
+               </GridItem>
+
+               <GridItem colSpan={5}>
+                  <Box w='full' display='flex' justifyContent='end'>
+                     <Button
+                        leftIcon={<Icon as={BsPlus} />}
+                        variant='outline'
+                        colorScheme='blue'
+                     >
+                        Post it
+                     </Button>
+                  </Box>
                </GridItem>
             </Grid>
          </Container>
