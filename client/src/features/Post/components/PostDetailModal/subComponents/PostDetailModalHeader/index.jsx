@@ -1,7 +1,7 @@
-import { Box, HStack, Icon, Text, VStack } from '@chakra-ui/react';
+import { Box, HStack, Text, VStack } from '@chakra-ui/react';
 import React from 'react';
-import { BsThreeDots } from 'react-icons/bs';
 import MeowAvatar from '../../../../../../global/components/MeowAvatar';
+import PostCardMenu from '../../../PostCard/subComponents/PostCardMenu';
 // import PropTypes from 'prop-types';
 
 const PostDetailModalHeader = (props) => {
@@ -19,7 +19,7 @@ const PostDetailModalHeader = (props) => {
             <Text fontWeight='bold'>theweeknd</Text>
             <Text>Danang, Vietnam</Text>
          </VStack>
-         <Icon as={BsThreeDots} fontSize='20px' />
+         <PostCardMenu fontSize='26px' />
       </HStack>
    );
 };

@@ -1,7 +1,7 @@
-import { HStack, Icon, Spacer, Text } from '@chakra-ui/react';
+import { HStack, Spacer, Text } from '@chakra-ui/react';
 import React from 'react';
-import { BsThreeDots } from 'react-icons/bs';
 import MeowAvatar from '../../../../../../global/components/MeowAvatar';
+import PostCardMenu from '../PostCardMenu';
 
 PostCardHeader.propTypes = {};
 
@@ -21,7 +21,7 @@ function PostCardHeader(props) {
             Flowing
          </Text>
          <Spacer />
-         <Icon as={BsThreeDots} fontSize='26px' color='gray.500' />
+         <PostCardMenu fontSize='26px' />
       </HStack>
    );
 }

@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import './PostCardImage.scss';
 import IMG1 from '../../../../../../temp_img/ig-4.jpg';
 import IMG2 from '../../../../../../temp_img/ig-3.jpg';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const PostCardImage = () => {
    const imgArray = [
@@ -21,8 +22,28 @@ const PostCardImage = () => {
       },
    ];
 
+   let location = useLocation();
+   const navigate = useNavigate();
+
+   const onDoubleClick = () => {
+      console.log('double click');
+   };
+
+   const onClick = () => {
+      navigate('/post/27', {
+         state: { backgroundLocation: location },
+      });
+   };
+
    return (
-      <Box w='full' h='full' position='relative' className='post-card--image'>
+      <Box
+         w='full'
+         h='full'
+         position='relative'
+         className='post-card--image'
+         onDoubleClick={onDoubleClick}
+         onClick={onClick}
+      >
          <Swiper
             modules={[Navigation]}
             slidesPerView={1}
@@ -34,9 +55,7 @@ const PostCardImage = () => {
                width: '100%',
                height: 'auto',
             }}
-            centeredSlides={true}
-            centeredSlidesBounds={true}
-            centerInsufficientSlides={true}
+            grabCursor={true}
             navigation={{
                nextEl: '.next',
                prevEl: '.prev',

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import MeowAvatar from '../../../../global/components/MeowAvatar';
 
 const SuggestBar = () => {
-   const [list, setList] = useState([
+   const [list] = useState([
       {
          id: 1,
          name: 'Meganfox',
