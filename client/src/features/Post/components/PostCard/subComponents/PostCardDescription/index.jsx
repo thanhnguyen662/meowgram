@@ -1,11 +1,4 @@
-import {
-   HStack,
-   Icon,
-   Spacer,
-   Text,
-   useBreakpointValue,
-   VStack,
-} from '@chakra-ui/react';
+import { Flex, HStack, Icon, Spacer, Text, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { BsHeart } from 'react-icons/bs';
 
@@ -45,27 +38,22 @@ function PostCardDescription(props) {
 
 const Comment = (props) => {
    const { content, name } = props;
-   const variant = useBreakpointValue({ base: 'block', md: 'inline' });
 
    return (
       <>
-         {variant === 'inline' ? (
-            <HStack spacing='3' w='full' alignItems='start'>
-               <Text fontWeight='bold'>{name}</Text>
+         <Flex
+            gap={{ base: 1, md: 2 }}
+            direction={{ base: 'column', md: 'row' }}
+            w='full'
+            alignItems='start'
+         >
+            <Text fontWeight='bold'>{name}</Text>
+            <Flex direction='row' w='full' gap='2'>
                <Text>{content}</Text>
                <Spacer />
                <Icon as={BsHeart} color='gray.500' />
-            </HStack>
-         ) : (
-            <VStack w='full' alignItems='start' spacing='0.5'>
-               <Text fontWeight='bold'>{name}: </Text>
-               <HStack w='full'>
-                  <Text>{content}</Text>
-                  <Spacer />
-                  <Icon as={BsHeart} color='gray.500' />
-               </HStack>
-            </VStack>
-         )}
+            </Flex>
+         </Flex>
       </>
    );
 };

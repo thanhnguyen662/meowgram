@@ -2,21 +2,20 @@ import { Icon } from '@chakra-ui/icons';
 import { Box, Divider, Flex, HStack, VStack } from '@chakra-ui/react';
 import React from 'react';
 import {
-   BsPerson,
-   BsPersonFill,
    BsChat,
    BsCollection,
    BsCompass,
    BsCompassFill,
    BsHouseDoor,
    BsHouseDoorFill,
+   BsPerson,
+   BsPersonFill,
 } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { authData } from '../../../../../features/Auth/authSlice';
 
 const SidebarMenu = () => {
-   const navigate = useNavigate();
    const location = useLocation();
    const { userData } = useSelector(authData);
 
@@ -29,8 +28,8 @@ const SidebarMenu = () => {
          title: 'Home',
          icon: <Icon as={BsHouseDoor} />,
          activeIcon: <Icon as={BsHouseDoorFill} />,
-         pathname: 'home',
-         to: '/home',
+         pathname: '',
+         to: '/',
       },
       {
          title: 'Explorer',
@@ -62,26 +61,26 @@ const SidebarMenu = () => {
    return (
       <VStack w='full' spacing='25px'>
          {menu1.map((item) => (
-            <HStack
-               spacing='20px'
-               key={item.title}
-               w='full'
-               justifyContent='start'
-               alignItems='center'
-               cursor='pointer'
-               onClick={() => navigate(item.to)}
-            >
-               <Flex fontSize='24px' alignItems='center'>
-                  {isActive(item) ? item.activeIcon : item.icon}
-               </Flex>
-               <Box
-                  fontSize='17px'
-                  pt='1'
-                  fontWeight={isActive(item) ? 'bold' : 'normal'}
+            <Link to={item.to} style={{ width: '100%' }} key={item.title}>
+               <HStack
+                  spacing='20px'
+                  w='full'
+                  justifyContent='start'
+                  alignItems='center'
+                  cursor='pointer'
                >
-                  {item.title}
-               </Box>
-            </HStack>
+                  <Flex fontSize='24px' alignItems='center'>
+                     {isActive(item) ? item.activeIcon : item.icon}
+                  </Flex>
+                  <Box
+                     fontSize='17px'
+                     pt='1'
+                     fontWeight={isActive(item) ? 'bold' : 'normal'}
+                  >
+                     {item.title}
+                  </Box>
+               </HStack>
+            </Link>
          ))}
          <Divider />
          {menu2.map((item) => (

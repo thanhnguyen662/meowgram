@@ -24,7 +24,7 @@ const Header = () => {
    const { userData } = useSelector(authData);
 
    const onClickLogo = () => {
-      navigate('/home');
+      navigate('/');
    };
 
    return (
@@ -70,7 +70,7 @@ const HeaderMobile = (props) => {
                />
             </MenuButton>
             <MenuList>
-               <MenuItem onClick={() => navigate(`/home`)}>Home</MenuItem>
+               <MenuItem onClick={() => navigate(`/`)}>Home</MenuItem>
                <MenuItem
                   onClick={() => navigate(`/profile/${userData.email}/posts`)}
                >

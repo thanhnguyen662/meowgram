@@ -30,7 +30,7 @@ const RegisterPage = () => {
 
                if (upsertAccountResponse) {
                   setFormLoading.off();
-                  return (window.location = '/home');
+                  return (window.location = '/');
                }
             }
          }

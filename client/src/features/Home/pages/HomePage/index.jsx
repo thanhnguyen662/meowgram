@@ -1,9 +1,9 @@
 import {
    Box,
-   Divider,
    Grid,
    GridItem,
    Heading,
+   StackDivider,
    VStack,
 } from '@chakra-ui/react';
 import React from 'react';
@@ -12,6 +12,15 @@ import StoriesSlide from '../../../Stories/components/StoriesSlide';
 import SuggestBar from '../../components/SuggestBar';
 
 const HomePage = () => {
+   const postCards = [
+      {
+         id: 1,
+      },
+      {
+         id: 2,
+      },
+   ];
+
    return (
       <>
          <Grid templateColumns='repeat(16, 1fr)' gap={{ base: 0, md: 6 }}>
@@ -19,10 +28,16 @@ const HomePage = () => {
                <VStack w='full' alignItems='flex-start' spacing='30px'>
                   <StoriesSlide />
                   <Heading fontSize='26px'>Feed</Heading>
-                  <VStack spacing='40px' w='full'>
-                     <PostCard />
-                     <Divider />
-                     <PostCard />
+                  <VStack
+                     spacing='40px'
+                     w='full'
+                     divider={<StackDivider borderColor='gray.200' />}
+                  >
+                     {postCards.map((post) => (
+                        <Box key={post.id} w='full'>
+                           <PostCard />
+                        </Box>
+                     ))}
                   </VStack>
                </VStack>
             </GridItem>

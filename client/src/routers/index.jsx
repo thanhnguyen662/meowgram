@@ -1,27 +1,35 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Auth from '../features/Auth';
-import Home from '../features/Home';
-import Profile from '../features/Profile';
-import Main from '../global/layouts/Main';
-import Private from '../global/layouts/Private';
-import NotFoundPage from '../global/pages/NotFoundPage';
-import Loader from '../global/layouts/Loader';
 import ExplorerPage from '../features/Explorer/pages/ExplorerPage';
+import HomePage from '../features/Home/pages/HomePage';
+import Post from '../features/Post';
+import Profile from '../features/Profile';
+import Loader from '../global/layouts/Loader';
+import Private from '../global/layouts/Private';
+import PostDetailModal from '../features/Post/components/PostDetailModal';
 
 const Routers = () => {
+   let location = useLocation();
+   let state = location.state;
+
    return (
       <Loader>
-         <Routes>
-            <Route path='/auth/*' element={<Auth />} />
-            <Route element={<Main />}></Route>
-            <Route element={<Private />}>
-               <Route path='/home/*' element={<Home />} />
-               <Route path='/profile/*' element={<Profile />} />
-               <Route path='/explorer' element={<ExplorerPage />} />
+         <Routes location={state?.backgroundLocation || location}>
+            <Route path='auth/*' element={<Auth />} />
+            <Route path='/' element={<Private />}>
+               <Route index element={<HomePage />} />
+               <Route path='post/*' element={<Post />} />
+               <Route path='profile/*' element={<Profile state={state} />} />
+               <Route path='explorer' element={<ExplorerPage />} />
             </Route>
-            <Route path='*' element={<NotFoundPage />} />
          </Routes>
+
+         {state?.backgroundLocation && (
+            <Routes>
+               <Route path='/post/:id' element={<PostDetailModal />} />
+            </Routes>
+         )}
       </Loader>
    );
 };

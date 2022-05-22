@@ -27,7 +27,7 @@ const SidebarUser = () => {
       const logoutResponse = await logout();
       if (logoutResponse.message === 'logout_success') {
          localStorage.setItem('providerData', false);
-         return (window.location = '/home');
+         return (window.location = '/');
       }
    };
 
