@@ -7,7 +7,7 @@ import {
    Text,
    VStack,
 } from '@chakra-ui/react';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 // import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
 import { BsFillCloudArrowUpFill, BsFillCloudCheckFill } from 'react-icons/bs';
@@ -30,14 +30,15 @@ const PostCreateUploadZone = ({ handleSetFiles, files }) => {
       onDrop,
    });
 
-   useEffect(() => {
-      return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
-   }, [files]);
+   // useEffect(() => {
+   //    return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
+   // }, [files]);
 
    return (
       <Center
          {...getRootProps()}
          w='full'
+         minW='450px'
          h='150%'
          borderWidth='2px'
          rounded='xl'

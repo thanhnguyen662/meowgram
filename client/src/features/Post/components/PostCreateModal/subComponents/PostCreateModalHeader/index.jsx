@@ -5,7 +5,7 @@ import MeowAvatar from '../../../../../../global/components/MeowAvatar';
 
 const PostCreateModalHeader = (props) => {
    return (
-      <HStack spacing='5'>
+      <HStack spacing='5' w='full'>
          <Box>
             <MeowAvatar
                outline={true}

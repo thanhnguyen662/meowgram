@@ -69,6 +69,7 @@ const Header = () => {
                   <GridItem colSpan={5} display={{ base: 'none', md: 'block' }}>
                      <Box w='full' display='flex' justifyContent='end'>
                         <Button
+                           lineHeight={1}
                            leftIcon={<Icon as={BsPlus} />}
                            variant='outline'
                            colorScheme='blue'

@@ -10,17 +10,8 @@ import IMG1 from '../../../../../../temp_img/ig-4.jpg';
 import IMG2 from '../../../../../../temp_img/ig-3.jpg';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const PostCardImage = () => {
-   const imgArray = [
-      {
-         id: 1,
-         photoURL: IMG1,
-      },
-      {
-         id: 2,
-         photoURL: IMG2,
-      },
-   ];
+const PostCardImage = ({ postImage }) => {
+   const imgArray = postImage || [IMG1, IMG2];
 
    let location = useLocation();
    const navigate = useNavigate();
@@ -62,9 +53,9 @@ const PostCardImage = () => {
                disabledClass: 'lock',
             }}
          >
-            {imgArray.map((stories) => (
-               <SwiperSlide key={stories.id}>
-                  <Image src={stories.photoURL} w='full' objectFit='cover' />
+            {imgArray.map((stories, index) => (
+               <SwiperSlide key={index}>
+                  <Image src={stories} w='full' objectFit='cover' />
                </SwiperSlide>
             ))}
             <SlideButton />
