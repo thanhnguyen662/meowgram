@@ -3,16 +3,21 @@ import {
    Box,
    Grid,
    GridItem,
+   Icon,
    Modal,
    ModalBody,
-   ModalCloseButton,
    ModalContent,
+   ModalFooter,
+   ModalHeader,
    ModalOverlay,
+   Text,
+   useDisclosure,
    VStack,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import 'swiper/css';
-import 'swiper/css/navigation';
+import { BsArrowLeft } from 'react-icons/bs';
+import { MdOutlineClose } from 'react-icons/md';
+import ConfirmModal from '../../../../global/components/ConfirmModal';
 import PostCardImage from '../PostCard/subComponents/PostCardImage';
 import PostCreateCropImg from '../PostCreateCropImg';
 import PostCreateUploadZone from '../PostCreateUploadZone';
@@ -20,10 +25,17 @@ import PostCreateModalHeader from './subComponents/PostCreateModalHeader';
 import PostCreateModalTextArea from './subComponents/PostCreateModalTextArea';
 
 const PostCreateModal = ({ isOpen, onClose }) => {
+   const {
+      isOpen: isConfirmModalOpen,
+      onClose: onCloseConfirmModalClose,
+      onOpen: onOpenCreatePostModal,
+   } = useDisclosure();
+
    const [step, setStep] = useState(0);
    const [files, setFiles] = useState([]);
    const [activeFile, setActiveFile] = useState(0);
    const [croppedFile, setCoppedFile] = useState([]);
+   const [defaultAspect, setDefaultAspect] = useState(null);
 
    useEffect(() => {
       if (files.length > 0) return setStep(1);
@@ -45,16 +57,24 @@ const PostCreateModal = ({ isOpen, onClose }) => {
       );
    };
 
-   const handleSetCoppedFile = (file) => {
+   const handleSetCoppedFile = ({ cropImage, currentAspect }) => {
       if (activeFile < files.length - 1) setActiveFile((prev) => prev + 1);
-      setCoppedFile([...croppedFile, file]);
+      setCoppedFile([...croppedFile, cropImage]);
+      setDefaultAspect(currentAspect);
    };
 
    const onClickCloseButton = () => {
+      onOpenCreatePostModal();
+   };
+
+   const resetStateWhenCloseModal = () => {
+      onClose();
+
       setActiveFile(0);
       setStep(0);
       setCoppedFile([]);
       setFiles([]);
+      setDefaultAspect(null);
    };
 
    const stepContents = [
@@ -69,6 +89,7 @@ const PostCreateModal = ({ isOpen, onClose }) => {
                files={files}
                handleSetCoppedFile={handleSetCoppedFile}
                activeFile={activeFile}
+               defaultAspect={defaultAspect}
             />
          ),
       },
@@ -78,25 +99,68 @@ const PostCreateModal = ({ isOpen, onClose }) => {
       },
    ];
 
+   const onClickGoBack = () => {
+      if (step === 2) {
+         setActiveFile(0);
+         setCoppedFile([]);
+      }
+      if (step === 1) {
+         setFiles([]);
+      }
+      setDefaultAspect(null);
+      setStep(step - 1);
+   };
+
    return (
-      <Modal
-         isOpen={isOpen}
-         onClose={onClose}
-         size='6xl'
-         closeOnOverlayClick={false}
-      >
-         <ModalOverlay />
-         <ModalContent py='8' w='max-content'>
-            <ModalCloseButton onClick={onClickCloseButton} />
-            <ModalBody>
-               {stepContents.map((item) => {
-                  // eslint-disable-next-line
-                  if (item.id !== step) return;
-                  return <Box key={item.id}>{item.content}</Box>;
-               })}
-            </ModalBody>
-         </ModalContent>
-      </Modal>
+      <>
+         <Modal
+            isOpen={isOpen}
+            onClose={onClose}
+            size='6xl'
+            position='relative'
+            closeOnOverlayClick={false}
+            closeOnEsc={false}
+         >
+            <ModalOverlay />
+            <ModalContent w='max-content'>
+               <ModalHeader
+                  display='flex'
+                  alignItems='center'
+                  justifyContent='space-between'
+               >
+                  <Icon
+                     as={BsArrowLeft}
+                     fontSize='25'
+                     color='gray.600'
+                     cursor='pointer'
+                     onClick={onClickGoBack}
+                  />
+                  <Text>Create new post</Text>
+                  <Icon
+                     as={MdOutlineClose}
+                     fontSize='25'
+                     color='gray.600'
+                     cursor='pointer'
+                     onClick={onClickCloseButton}
+                  />
+               </ModalHeader>
+               <ModalBody>
+                  {stepContents.map((item) => {
+                     // eslint-disable-next-line
+                     if (item.id !== step) return;
+                     return <Box key={item.id}>{item.content}</Box>;
+                  })}
+               </ModalBody>
+               <ModalFooter></ModalFooter>
+            </ModalContent>
+         </Modal>
+         <ConfirmModal
+            isOpen={isConfirmModalOpen}
+            onClose={onCloseConfirmModalClose}
+            onOpen={onOpenCreatePostModal}
+            onOk={resetStateWhenCloseModal}
+         />
+      </>
    );
 };
 
@@ -108,7 +172,12 @@ const StepContent = ({ handleSetFiles, files }) => {
    );
 };
 
-const Step1Content = ({ files, handleSetCoppedFile, activeFile }) => {
+const Step1Content = ({
+   files,
+   handleSetCoppedFile,
+   activeFile,
+   defaultAspect,
+}) => {
    return (
       <Box w='600px'>
          {files.map((file, index) => {
@@ -119,6 +188,7 @@ const Step1Content = ({ files, handleSetCoppedFile, activeFile }) => {
                   key={index}
                   file={file}
                   handleSetCoppedFile={handleSetCoppedFile}
+                  defaultAspect={defaultAspect}
                />
             );
          })}
