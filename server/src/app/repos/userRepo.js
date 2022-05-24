@@ -20,9 +20,10 @@ const findMe = async ({ email }) => {
    return find;
 };
 
-const createUser = async ({ email, name, username, photoURL = null }) => {
+const createUser = async ({ id, email, name, username, photoURL = null }) => {
    const create = await userModel.create({
       data: {
+         id,
          email,
          name,
          photoURL,

@@ -24,8 +24,16 @@ import PostCreateCropImg from '../PostCreateCropImg';
 import PostCreateUploadZone from '../PostCreateUploadZone';
 import PostCreateModalHeader from './subComponents/PostCreateModalHeader';
 import PostCreateModalTextArea from './subComponents/PostCreateModalTextArea';
+import { uploadFile } from '../../../../firebase';
+import { useSelector } from 'react-redux';
+import { authData } from '../../../Auth/authSlice';
+import postApi from '../../../../api/postApi';
 
 const PostCreateModal = ({ isOpen, onClose }) => {
+   const {
+      userData: { email },
+   } = useSelector(authData);
+
    const {
       isOpen: isConfirmModalOpen,
       onClose: onCloseConfirmModalClose,
@@ -97,11 +105,32 @@ const PostCreateModal = ({ isOpen, onClose }) => {
       setCaption(e.target.value);
    };
 
-   const onClickPost = () => {
-      console.log({
-         croppedFile,
-         caption,
-      });
+   const onClickPost = async () => {
+      try {
+         const uploadPromise = croppedFile.map(async (file) => {
+            const img = await fetch(file);
+            const bytes = await img.blob();
+
+            const fileURL = await uploadFile({
+               email,
+               file: bytes,
+               directory: 'post',
+            });
+
+            return fileURL;
+         });
+
+         const fileURLPromise = await Promise.all(uploadPromise);
+
+         const createResponse = await postApi.create({
+            imageURLs: fileURLPromise,
+            caption,
+         });
+
+         console.log('🚀 ~ createResponse', createResponse);
+      } catch (error) {
+         console.log(error);
+      }
    };
 
    const stepContents = [
