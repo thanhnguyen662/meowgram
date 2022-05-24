@@ -10,17 +10,19 @@ import IMG1 from '../../../../../../temp_img/ig-4.jpg';
 import IMG2 from '../../../../../../temp_img/ig-3.jpg';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const PostCardImage = ({ postImage }) => {
+const PostCardImage = ({ postImage, disabledClick }) => {
    const imgArray = postImage || [IMG1, IMG2];
 
    let location = useLocation();
    const navigate = useNavigate();
 
    const onDoubleClick = () => {
+      if (disabledClick) return;
       console.log('double click');
    };
 
    const onClick = () => {
+      if (disabledClick) return;
       navigate('/post/27', {
          state: { backgroundLocation: location },
       });

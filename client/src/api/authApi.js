@@ -6,8 +6,8 @@ const authApi = {
       return axiosClient.get(url);
    },
 
-   upsertAccount: (data) => {
-      const url = 'http://localhost:9000/api/user/upsert';
+   createAccount: (data) => {
+      const url = 'http://localhost:9000/api/user/create';
       return axiosClient.post(url, data);
    },
 };

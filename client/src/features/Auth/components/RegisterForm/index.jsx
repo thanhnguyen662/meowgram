@@ -16,6 +16,7 @@ function RegisterForm(props) {
       email: '',
       name: '',
       password: '',
+      username: '',
       confirmPassword: '',
    };
 
@@ -43,15 +44,21 @@ function RegisterForm(props) {
                <Form>
                   <VStack spacing='15px'>
                      <FastField
+                        name='email'
+                        placeholder='Enter your email'
+                        label='Email'
+                        component={AuthInput}
+                     />
+                     <FastField
                         name='name'
                         placeholder='Enter your name'
                         label='Name'
                         component={AuthInput}
                      />
                      <FastField
-                        name='email'
-                        placeholder='Enter your email'
-                        label='Email'
+                        name='username'
+                        placeholder='Enter your username'
+                        label='Username'
                         component={AuthInput}
                      />
                      <FastField

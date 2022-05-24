@@ -70,12 +70,12 @@ const Header = () => {
                      <Box w='full' display='flex' justifyContent='end'>
                         <Button
                            lineHeight={1}
-                           leftIcon={<Icon as={BsPlus} />}
+                           rightIcon={<Icon as={BsPlus} />}
                            variant='outline'
                            colorScheme='blue'
                            onClick={onClickCreatePost}
                         >
-                           Post it
+                           Post now
                         </Button>
                      </Box>
                   </GridItem>

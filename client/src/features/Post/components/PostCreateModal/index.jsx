@@ -1,6 +1,7 @@
 // import PropTypes from 'prop-types';
 import {
    Box,
+   Button,
    Grid,
    GridItem,
    Icon,
@@ -34,6 +35,7 @@ const PostCreateModal = ({ isOpen, onClose }) => {
    const [step, setStep] = useState(0);
    const [files, setFiles] = useState([]);
    const [activeFile, setActiveFile] = useState(0);
+   const [caption, setCaption] = useState('');
    const [croppedFile, setCoppedFile] = useState([]);
    const [defaultAspect, setDefaultAspect] = useState(null);
 
@@ -75,6 +77,31 @@ const PostCreateModal = ({ isOpen, onClose }) => {
       setCoppedFile([]);
       setFiles([]);
       setDefaultAspect(null);
+      setCaption('');
+   };
+
+   const onClickGoBack = () => {
+      if (step === 2) {
+         setActiveFile(0);
+         setCoppedFile([]);
+         setCaption('');
+      }
+      if (step === 1) {
+         setFiles([]);
+      }
+      setDefaultAspect(null);
+      setStep(step - 1);
+   };
+
+   const onChangeCaption = (e) => {
+      setCaption(e.target.value);
+   };
+
+   const onClickPost = () => {
+      console.log({
+         croppedFile,
+         caption,
+      });
    };
 
    const stepContents = [
@@ -95,21 +122,15 @@ const PostCreateModal = ({ isOpen, onClose }) => {
       },
       {
          id: 2,
-         content: <Step2Content croppedFile={croppedFile} />,
+         content: (
+            <Step2Content
+               croppedFile={croppedFile}
+               onClickPost={onClickPost}
+               onChangeCaption={onChangeCaption}
+            />
+         ),
       },
    ];
-
-   const onClickGoBack = () => {
-      if (step === 2) {
-         setActiveFile(0);
-         setCoppedFile([]);
-      }
-      if (step === 1) {
-         setFiles([]);
-      }
-      setDefaultAspect(null);
-      setStep(step - 1);
-   };
 
    return (
       <>
@@ -144,7 +165,7 @@ const PostCreateModal = ({ isOpen, onClose }) => {
                      onClick={onClickCloseButton}
                   />
                </ModalHeader>
-               <ModalBody>
+               <ModalBody h='full'>
                   {stepContents.map((item) => {
                      // eslint-disable-next-line
                      if (item.id !== step) return;
@@ -196,16 +217,24 @@ const Step1Content = ({
    );
 };
 
-const Step2Content = ({ croppedFile }) => {
+const Step2Content = ({ croppedFile, onClickPost, onChangeCaption }) => {
    return (
       <Grid templateColumns='repeat(24, 1fr)' gap={8} h='full'>
          <GridItem colSpan={14}>
-            <PostCardImage postImage={croppedFile} />
+            <PostCardImage postImage={croppedFile} disabledClick={true} />
          </GridItem>
-         <GridItem colSpan={10}>
-            <VStack spacing={6} h='full'>
+         <GridItem colSpan={10} h='full'>
+            <VStack spacing={4} h='full'>
                <PostCreateModalHeader />
-               <PostCreateModalTextArea />
+               <PostCreateModalTextArea onChangeCaption={onChangeCaption} />
+               <Button
+                  w='full'
+                  colorScheme='blue'
+                  size='lg'
+                  onClick={onClickPost}
+               >
+                  Post now
+               </Button>
             </VStack>
          </GridItem>
       </Grid>

@@ -20,20 +20,13 @@ const findMe = async ({ email }) => {
    return find;
 };
 
-const upsertUser = async ({ email, name, photoURL = null }) => {
-   const create = await userModel.upsert({
-      where: {
-         email,
-      },
-      update: {
+const createUser = async ({ email, name, username, photoURL = null }) => {
+   const create = await userModel.create({
+      data: {
          email,
          name,
          photoURL,
-      },
-      create: {
-         email,
-         name,
-         photoURL,
+         username,
       },
    });
 
@@ -43,5 +36,5 @@ const upsertUser = async ({ email, name, photoURL = null }) => {
 module.exports = {
    testUserRepo,
    findMe,
-   upsertUser,
+   createUser,
 };

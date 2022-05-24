@@ -5,17 +5,17 @@ import MeowAvatar from '../../../../../../global/components/MeowAvatar';
 
 const PostCreateModalHeader = (props) => {
    return (
-      <HStack spacing='5' w='full'>
+      <HStack spacing='4' w='full'>
          <Box>
             <MeowAvatar
                outline={true}
-               width='60px'
-               height='60px'
+               width='55px'
+               height='55px'
                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9rJMMEpWQ0NPwk7qTq3Zmug9Rmmm2iREdVg&usqp=CAU'
             />
          </Box>
          <VStack lineHeight='1' alignItems='start' spacing='2'>
-            <Text fontWeight='bold' fontSize='19px'>
+            <Text fontWeight='bold' fontSize='18px'>
                theweeknd
             </Text>
             <Text>Nisicommodo.</Text>

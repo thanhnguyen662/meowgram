@@ -24,7 +24,7 @@ const RegisterPage = () => {
             });
 
             if (updateProfileResponse.message === 'update_profile_success') {
-               const upsertAccountResponse = await authApi.upsertAccount(
+               const upsertAccountResponse = await authApi.createAccount(
                   formData
                );
 
@@ -35,6 +35,7 @@ const RegisterPage = () => {
             }
          }
       } catch (error) {
+         console.log('🚀 ~ error', error);
          setFormLoading.off();
 
          toast({
@@ -64,7 +65,7 @@ const RegisterPage = () => {
          >
             <AuthTitle
                title='Create new account'
-               subTitle={`Already a member? Login In`}
+               subTitle='Already a member? Login In'
             />
 
             <Box>

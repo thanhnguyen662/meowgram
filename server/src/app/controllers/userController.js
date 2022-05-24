@@ -11,9 +11,8 @@ const testUserController = (req, res, next) => {
 };
 
 const findMeLocal = async (req, res, next) => {
-   const userInfo = req.getUserInfoByToken;
-
    try {
+      const userInfo = req.getUserInfoByToken;
       const response = await userRepo.findMe({
          email: userInfo.email,
       });
@@ -23,10 +22,10 @@ const findMeLocal = async (req, res, next) => {
    }
 };
 
-const upsertUserLocal = async (req, res, next) => {
+const createUserLocal = async (req, res, next) => {
    try {
-      const upsertUserResponse = await userRepo.upsertUser({ ...req.body });
-      return res.json(upsertUserResponse);
+      const createUserResponse = await userService.createUser({ ...req.body });
+      return res.json(createUserResponse);
    } catch (error) {
       return next(error);
    }
@@ -35,5 +34,5 @@ const upsertUserLocal = async (req, res, next) => {
 module.exports = {
    testUserController,
    findMeLocal,
-   upsertUserLocal,
+   createUserLocal,
 };
